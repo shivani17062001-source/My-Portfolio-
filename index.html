@@ -5,9 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Shivani Uppala | QA Automation Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
 *{
 margin:0;
 padding:0;
@@ -17,11 +18,11 @@ scroll-behavior:smooth;
 
 :root{
 --bg:#050505;
---card:#0f172a;
---primary:#8b5cf6;
---blue:#3b82f6;
---text:#f8fafc;
---muted:#94a3b8;
+--card:#111827;
+--purple:#8B5CF6;
+--blue:#3B82F6;
+--text:#F8FAFC;
+--muted:#94A3B8;
 }
 
 body{
@@ -38,54 +39,65 @@ inset:0;
 background:
 radial-gradient(circle at top left,
 rgba(139,92,246,.15),
-transparent 30%),
+transparent 35%),
+
 radial-gradient(circle at bottom right,
-rgba(59,130,246,.12),
-transparent 30%);
+rgba(59,130,246,.1),
+transparent 35%);
 pointer-events:none;
+z-index:-1;
 }
 
 nav{
 position:fixed;
-width:100%;
 top:0;
-padding:20px 60px;
+width:100%;
+padding:22px 60px;
 display:flex;
 justify-content:space-between;
-backdrop-filter:blur(15px);
-background:rgba(0,0,0,.45);
+align-items:center;
+background:rgba(0,0,0,.6);
+backdrop-filter:blur(14px);
 z-index:999;
 }
 
 .logo{
 font-size:1.4rem;
 font-weight:800;
-background:linear-gradient(
+background:
+linear-gradient(
 90deg,
-var(--primary),
+var(--purple),
 var(--blue)
 );
+
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
 nav ul{
 display:flex;
-list-style:none;
 gap:30px;
+list-style:none;
 }
 
 nav a{
-color:white;
 text-decoration:none;
-opacity:.8;
+color:white;
+opacity:.75;
+transition:.3s;
+}
+
+nav a:hover{
+opacity:1;
+color:var(--purple);
 }
 
 .hero{
 height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
+justify-content:center;
 text-align:center;
 padding:0 30px;
 position:relative;
@@ -93,17 +105,18 @@ position:relative;
 
 .hero-content{
 max-width:900px;
-z-index:2;
 }
 
 .hero h1{
-font-size:4.5rem;
+font-size:4.8rem;
 font-weight:800;
 margin-bottom:20px;
-background:linear-gradient(
+
+background:
+linear-gradient(
 90deg,
 white,
-#8b5cf6
+var(--purple)
 );
 
 -webkit-background-clip:text;
@@ -111,44 +124,47 @@ white,
 }
 
 .role{
-color:var(--primary);
-font-size:1.5rem;
-margin-bottom:20px;
+font-size:1.4rem;
+color:var(--purple);
 height:40px;
+margin-bottom:20px;
+font-weight:600;
 }
 
 .subtitle{
+
 font-size:1.1rem;
 line-height:1.8;
-color:var(--muted);
 max-width:700px;
 margin:auto;
+color:var(--muted);
 }
 
 .buttons{
-margin-top:40px;
 display:flex;
 justify-content:center;
 gap:20px;
+margin-top:40px;
 flex-wrap:wrap;
 }
 
 .btn{
-padding:14px 28px;
+padding:14px 30px;
 border-radius:999px;
-border:none;
 cursor:pointer;
-font-size:1rem;
+border:none;
 font-weight:600;
 transition:.4s;
 }
 
 .primary{
-background:linear-gradient(
+background:
+linear-gradient(
 90deg,
-var(--primary),
+var(--purple),
 var(--blue)
 );
+
 color:white;
 }
 
@@ -160,36 +176,44 @@ color:white;
 
 .btn:hover{
 transform:translateY(-6px);
+
 box-shadow:
-0 10px 40px
-rgba(139,92,246,.35);
+0 10px 30px rgba(139,92,246,.4);
 }
 
-.ai-chip{
+.ai-orb{
+
 position:absolute;
-right:8%;
+
+right:10%;
+
 top:50%;
-transform:translateY(-50%);
-width:220px;
-height:220px;
+
+width:240px;
+height:240px;
+
 border-radius:50%;
+
 background:
 radial-gradient(
 circle,
-rgba(139,92,246,.6),
+rgba(139,92,246,.7),
 transparent
 );
 
-filter:blur(10px);
-animation:float 5s infinite;
+filter:blur(30px);
+
+animation:float 6s infinite;
 }
 
 @keyframes float{
+
 50%{
 transform:
-translateY(-60%)
+translateY(-40px)
 scale(1.1)
 }
+
 }
 
 section{
@@ -203,83 +227,184 @@ text-align:center;
 }
 
 .glass{
-background:rgba(255,255,255,.04);
-backdrop-filter:blur(14px);
-border:1px solid rgba(255,255,255,.08);
-padding:35px;
+
+background:
+rgba(255,255,255,.03);
+
+backdrop-filter:blur(15px);
+
+border:1px solid rgba(255,255,255,.06);
+
+padding:40px;
+
 border-radius:25px;
 }
 
 .philosophy{
+
 max-width:900px;
 margin:auto;
+
 text-align:center;
-line-height:1.8;
+
+line-height:1.9;
+
+font-size:1.1rem;
+
 color:var(--muted);
+
 }
 
-.terminal{
-background:#111827;
-padding:30px;
-border-radius:20px;
-font-family:monospace;
-line-height:2;
-border:1px solid #333;
-}
+.timeline{
 
-.green{
-color:#10b981;
-}
-
-.grid{
 display:grid;
+gap:35px;
+
+margin-top:50px;
+}
+
+.exp-card{
+
+background:var(--card);
+
+padding:35px;
+
+border-radius:25px;
+
+transition:.4s;
+
+border-left:3px solid var(--purple);
+
+}
+
+.exp-card:hover{
+
+transform:translateX(10px);
+
+box-shadow:
+0 20px 50px
+rgba(139,92,246,.2);
+
+}
+
+.exp-card h3{
+margin-bottom:10px;
+color:var(--purple);
+}
+
+.exp-card p{
+color:var(--muted);
+line-height:1.8;
+}
+
+.projects{
+
+display:grid;
+
 grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
+repeat(auto-fit,minmax(300px,1fr));
+
 gap:30px;
 }
 
-.card{
-padding:30px;
+.project{
+
 background:var(--card);
-border-radius:20px;
+
+padding:30px;
+
+border-radius:25px;
+
 transition:.4s;
 }
 
-.card:hover{
-transform:
-translateY(-10px);
+.project:hover{
+
+transform:translateY(-10px);
+
 box-shadow:
 0 20px 50px
-rgba(139,92,246,.25);
+rgba(139,92,246,.2);
+
+}
+
+.project h3{
+margin-bottom:15px;
+color:var(--purple);
+}
+
+.project p{
+color:var(--muted);
+line-height:1.7;
+}
+
+.tags{
+margin-top:20px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.tag{
+
+padding:8px 14px;
+
+border-radius:999px;
+
+font-size:.8rem;
+
+background:
+rgba(139,92,246,.15);
+
+color:#d8b4fe;
 }
 
 footer{
-padding:40px;
+
+padding:50px;
 text-align:center;
-opacity:.6;
+color:var(--muted);
+
 }
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:3rem;
+}
+
+nav ul{
+display:none;
+}
+
+.ai-orb{
+display:none;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
 <nav>
+
 <div class="logo">
 Shivani
 </div>
 
 <ul>
 <li><a href="#philosophy">Philosophy</a></li>
-<li><a href="#projects">Projects</a></li>
 <li><a href="#experience">Experience</a></li>
-<li><a href="#contact">Contact</a></li>
+<li><a href="#projects">Projects</a></li>
 </ul>
 
 </nav>
 
 <section class="hero">
 
-<div class="ai-chip"></div>
+<div class="ai-orb"></div>
 
 <div class="hero-content">
 
@@ -287,13 +412,13 @@ Shivani
 Shivani Uppala
 </h1>
 
-<div class="role" id="typing"></div>
+<div class="role" id="role"></div>
 
 <p class="subtitle">
 
-Engineering Reliable Digital Experiences Through Automation & AI
+Engineering Reliable Digital Experiences Through Automation & AI.
 
-Building scalable quality systems using Playwright, Cloud, APIs and intelligent automation.
+Building scalable quality systems through Playwright, APIs, Cloud, CI/CD and intelligent automation.
 
 </p>
 
@@ -326,44 +451,69 @@ I believe quality engineering is more than finding defects.
 
 I build automation systems that create scalable, reliable and measurable software experiences.
 
+My goal is to engineer resilient products through automation, performance optimization and intelligent quality practices.
+
 </div>
 
 </section>
 
 
-<section>
+<section id="experience">
 
 <h2 class="section-title">
-
-Regression Suite Simulation
-
+Experience
 </h2>
 
-<div class="terminal">
+<div class="timeline">
 
-> Running Regression Suite...<br>
+<div class="exp-card">
 
-<span class="green">
-✔ Login.spec.ts
-</span><br>
+<h3>
+QA Automation Engineer • Acentra Health
+</h3>
 
-<span class="green">
-✔ Checkout.spec.ts
-</span><br>
+<p>
 
-<span class="green">
-✔ APIValidation.spec.ts
-</span><br><br>
+Built Playwright + TypeScript automation frameworks, validated ETL pipelines and Snowflake datasets, integrated Jenkins pipelines and reduced manual regression effort by 30%.
 
-Tests Passed:124<br>
+</p>
 
-Execution Time:4m22s<br>
+</div>
 
-Coverage:96%
+
+<div class="exp-card">
+
+<h3>
+QA Engineer • Macy's
+</h3>
+
+<p>
+
+Implemented UI automation using Selenium and Playwright, executed backend Oracle validation and mobile testing using Appium.
+
+</p>
+
+</div>
+
+
+<div class="exp-card">
+
+<h3>
+QA Engineer • Change Healthcare
+</h3>
+
+<p>
+
+Developed automation workflows for healthcare systems while improving release quality and accelerating test execution.
+
+</p>
+
+</div>
 
 </div>
 
 </section>
+
 
 
 <section id="projects">
@@ -372,37 +522,44 @@ Coverage:96%
 Featured Projects
 </h2>
 
-<div class="grid">
+<div class="projects">
 
-<div class="card">
+<div class="project">
 
 <h3>
-AI Playwright Framework
+AI Powered Playwright Framework
 </h3>
 
 <p>
 
-Playwright + Docker + CI/CD + GitHub Actions + reporting architecture
+Modern Playwright + TypeScript framework using POM architecture, Docker containers, GitHub Actions and detailed reporting.
 
 </p>
 
+<div class="tags">
+
+<span class="tag">
+Playwright
+</span>
+
+<span class="tag">
+Docker
+</span>
+
+<span class="tag">
+CI/CD
+</span>
+
+<span class="tag">
+TypeScript
+</span>
+
 </div>
 
-<div class="card">
-
-<h3>
-AI Test Case Generator
-</h3>
-
-<p>
-
-Generate automation test scenarios with AI
-
-</p>
-
 </div>
 
-<div class="card">
+
+<div class="project">
 
 <h3>
 QA Analytics Dashboard
@@ -410,9 +567,56 @@ QA Analytics Dashboard
 
 <p>
 
-Visualize automation metrics and CI health
+Visualized automation coverage, defect trends and CI/CD health metrics through interactive dashboards.
 
 </p>
+
+<div class="tags">
+
+<span class="tag">
+Power BI
+</span>
+
+<span class="tag">
+Analytics
+</span>
+
+<span class="tag">
+Automation
+</span>
+
+</div>
+
+</div>
+
+
+<div class="project">
+
+<h3>
+AI Test Case Generator
+</h3>
+
+<p>
+
+Generate automated test scenarios using AI prompts and export reusable test cases.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">
+OpenAI
+</span>
+
+<span class="tag">
+React
+</span>
+
+<span class="tag">
+Automation
+</span>
+
+</div>
 
 </div>
 
@@ -423,10 +627,9 @@ Visualize automation metrics and CI health
 
 <footer>
 
-© 2026 Shivani Uppala
+© 2026 Shivani Uppala | QA Automation Engineer
 
 </footer>
-
 
 <script>
 
@@ -438,26 +641,24 @@ const roles=[
 
 "Cloud QA Engineer",
 
-"CI/CD Enthusiast",
+"API Testing Specialist",
 
-"API Testing Specialist"
+"CI/CD Enthusiast"
 
 ]
 
-let i=0
+let i=0;
 
 setInterval(()=>{
 
 document.getElementById(
-"typing"
+"role"
 ).innerText=roles[i]
 
 i++
 
 if(i>=roles.length){
-
 i=0
-
 }
 
 },2000)
