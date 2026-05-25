@@ -2,900 +2,776 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shivani Uppala | QA Automation Engineer Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Shivani Uppala - QA Automation Engineer with 5+ years of experience in healthcare, retail, and finance. Expert in Playwright, Selenium, TypeScript, API testing, and CI/CD." />
+  <title>Shivani Uppala | QA Automation Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    :root {
-      --bg: #050505;
-      --card: #0b1020;
-      --card-alt: #111827;
-      --purple: #8B5CF6;
-      --blue: #3B82F6;
-      --accent: #22C55E;
-      --text: #F9FAFB;
-      --muted: #9CA3AF;
-      --border: #1F2937;
-      --danger: #F97373;
-    }
-
+    /* ---------- RESET & VARIABLES ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
+    }
+
+    :root {
+      /* Dark mode (default) */
+      --bg-body: radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.12), transparent 60%),
+                  radial-gradient(circle at 90% 70%, rgba(56, 189, 248, 0.12), transparent 60%),
+                  #0a0c15;
+      --bg-surface: #0f121f;
+      --bg-surface-alt: #191e2f;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: rgba(71, 85, 105, 0.5);
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.25);
+      --accent-gradient: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      --card-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+      --transition: all 0.25s ease;
+    }
+
+    body.light {
+      --bg-body: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-surface-alt: #f1f5f9;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #7c3aed;
+      --accent-glow: rgba(124, 58, 237, 0.1);
+      --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
     }
 
     body {
-      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont;
-      background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.16), transparent 55%),
-                  radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.16), transparent 55%),
-                  var(--bg);
-      color: var(--text);
-      min-height: 100vh;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg-body);
+      color: var(--text-primary);
+      transition: background 0.3s, color 0.2s;
+      line-height: 1.5;
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    /* NAVBAR */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 14px 7%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(3, 7, 18, 0.82);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-      z-index: 50;
-    }
-
-    .logo {
-      font-weight: 800;
-      letter-spacing: .14em;
-      font-size: 0.92rem;
-      text-transform: uppercase;
-      background: linear-gradient(90deg, var(--purple), var(--blue));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 26px;
-      font-size: 0.9rem;
-    }
-
-    nav a {
-      opacity: 0.78;
-      transition: .25s;
-    }
-    nav a:hover {
-      opacity: 1;
-      color: var(--purple);
-    }
-
-    .nav-cta {
-      padding: 8px 18px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--purple), var(--blue));
-      color: white;
-      font-size: 0.86rem;
-      font-weight: 600;
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.9);
-    }
-
-    /* LAYOUT */
-    main {
-      padding-top: 90px;
+    /* ---------- TYPOGRAPHY & UTILITIES ---------- */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
     section {
-      padding: 72px 7%;
-      max-width: 1120px;
-      margin: 0 auto;
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type {
+      border-bottom: none;
     }
 
-    .section-title {
-      font-size: 1.9rem;
-      font-weight: 700;
-      margin-bottom: 6px;
+    .section-header {
+      margin-bottom: 2.5rem;
     }
-
-    .section-kicker {
-      font-size: 0.82rem;
+    .section-header .overline {
+      font-size: 0.75rem;
       text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--muted);
-      margin-bottom: 8px;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
-
-    .section-subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 26px;
-      max-width: 560px;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 80vh;
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
-      gap: 40px;
-      align-items: center;
-    }
-
-    .hero-title {
-      font-size: 2.9rem;
-      line-height: 1.1;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #ffffff, var(--purple));
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: var(--accent-gradient);
+      background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-weight: 800;
+      display: inline-block;
     }
-
-    .hero-role {
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--purple);
-      margin-bottom: 10px;
-    }
-
-    .hero-tagline {
-      font-size: 0.98rem;
-      line-height: 1.8;
-      color: var(--muted);
+    .section-header p {
+      color: var(--text-secondary);
       max-width: 620px;
+      margin-top: 0.75rem;
     }
 
-    .hero-meta {
-      margin-top: 14px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-    .hero-meta span {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 24px;
-    }
-
+    /* Buttons & Links */
     .btn {
-      border: none;
-      cursor: pointer;
-      border-radius: 999px;
-      padding: 11px 24px;
-      font-size: 0.9rem;
-      font-weight: 600;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: .22s;
+      gap: 0.6rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      text-decoration: none;
     }
-
     .btn-primary {
-      background: linear-gradient(90deg, var(--purple), var(--blue));
+      background: var(--accent-gradient);
       color: white;
-      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
+      box-shadow: 0 4px 12px var(--accent-glow);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 22px 55px rgba(15, 23, 42, 1);
+      filter: brightness(1.05);
+      box-shadow: 0 8px 20px var(--accent-glow);
     }
-
     .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      background: var(--bg-surface);
     }
     .btn-outline:hover {
-      background: rgba(15, 23, 42, 0.85);
-      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: var(--accent-glow);
     }
 
-    .hero-right {
-      position: relative;
+    /* Skills grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.8rem;
     }
-
-    .hero-card {
-      background: radial-gradient(circle at top left, rgba(139, 92, 246, 0.22), transparent 52%),
-                  var(--card);
-      border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 18px 18px 20px;
-      box-shadow: 0 26px 70px rgba(15, 23, 42, 1);
+    .skill-category {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      transition: var(--transition);
     }
-
-    .hero-card-header {
+    .skill-category:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+    .skill-category h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      gap: 0.5rem;
     }
-
-    .hero-tag {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      color: var(--muted);
+    .skill-category h3 i {
+      color: var(--accent);
+      font-size: 1.2rem;
     }
-
-    .hero-status {
-      font-size: 0.78rem;
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(34, 197, 94, 0.15);
-      color: #bbf7d0;
-      border: 1px solid rgba(34, 197, 94, 0.5);
-    }
-
-    .hero-pill-row {
+    .skill-badge {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 0.6rem;
     }
-
-    .pill {
-      font-size: 0.78rem;
-      padding: 5px 10px;
+    .skill-badge span {
+      background: var(--bg-surface-alt);
+      padding: 0.3rem 0.9rem;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      color: var(--muted);
-      background: rgba(15, 23, 42, 0.96);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
     }
 
-    .hero-metrics {
+    /* Experience timeline */
+    .exp-item {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+    }
+    .exp-header {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
-      gap: 14px;
-      margin-top: 14px;
+      align-items: baseline;
+      margin-bottom: 1rem;
     }
-
-    .metric {
-      text-align: left;
-    }
-    .metric-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--muted);
-    }
-    .metric-value {
-      font-size: 1.05rem;
+    .exp-header h3 {
+      font-size: 1.25rem;
       font-weight: 700;
-      margin-top: 4px;
     }
-    .metric-note {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .orb {
-      position: absolute;
-      right: -18px;
-      bottom: -26px;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(139, 92, 246, 0.75), transparent 60%);
-      filter: blur(18px);
-      pointer-events: none;
-    }
-
-    /* IMPACT CARDS */
-    .impact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 18px;
-      margin-top: 10px;
-    }
-
-    .impact-card {
-      background: var(--card);
-      border-radius: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 16px 18px;
-      font-size: 0.88rem;
-      color: var(--muted);
-    }
-
-    .impact-label {
-      font-size: 0.78rem;
+    .exp-header .date {
       color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      margin-bottom: 4px;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+    .exp-sub {
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .exp-list {
+      list-style: none;
+      padding-left: 0;
+    }
+    .exp-list li {
+      margin-bottom: 0.6rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: baseline;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .exp-list li i {
+      color: var(--accent);
+      font-size: 0.75rem;
+      margin-top: 0.2rem;
+      width: 1rem;
     }
 
-    /* ABOUT */
-    .about-body {
-      background: var(--card);
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 26px 26px 22px;
-      font-size: 0.94rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    /* PROJECTS */
+    /* Projects grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
-
     .project-card {
-      background: var(--card-alt);
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 20px 20px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      transition: .22s;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+      transition: var(--transition);
     }
     .project-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 1);
-      border-color: var(--purple);
+      transform: translateY(-6px);
+      border-color: var(--accent);
+      box-shadow: var(--card-shadow);
     }
-
-    .project-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      color: var(--muted);
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
     }
-
-    .project-title {
-      font-size: 1.02rem;
-      font-weight: 600;
+    .project-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
     }
-
-    .project-role {
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .project-copy {
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.7;
-    }
-
-    .project-meta {
-      font-size: 0.82rem;
-      color: var(--muted);
-    }
-
     .project-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
+      gap: 0.5rem;
+      margin: 1rem 0;
     }
-
-    .tag {
-      font-size: 0.76rem;
-      padding: 4px 9px;
+    .project-tags span {
+      background: var(--bg-surface-alt);
+      padding: 0.2rem 0.7rem;
       border-radius: 999px;
-      background: rgba(139, 92, 246, 0.15);
-      color: #ede9fe;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .project-impact {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 1rem;
+      border-top: 1px dashed var(--border);
+      padding-top: 1rem;
     }
 
-    .project-link {
-      margin-top: 8px;
-      font-size: 0.86rem;
-      color: var(--purple);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* TOOLKIT */
-    .toolkit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .toolkit-card {
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 18px 20px 16px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .toolkit-card h3 {
-      font-size: 0.98rem;
-      margin-bottom: 6px;
-      color: var(--text);
-    }
-
-    .toolkit-badges {
+    /* Education */
+    .edu-container {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
+      gap: 2rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.8rem 2rem;
     }
-
-    .mini-badge {
-      font-size: 0.76rem;
-      padding: 3px 9px;
+    .edu-item {
+      flex: 1;
+    }
+    .edu-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .edu-item p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    .auth-badge {
+      background: var(--accent-glow);
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      color: var(--muted);
+      padding: 0.3rem 1rem;
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 1rem;
     }
 
-    /* EDUCATION SECTION */
-    .education-grid {
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 20px 24px;
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .contact-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 1.8rem;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-links a {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    .contact-links a i {
+      width: 1.6rem;
+      color: var(--accent);
+    }
+    .contact-links a:hover {
+      color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    /* Hero */
+    .hero {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 24px;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 0 2rem;
     }
-    .edu-item h4 {
+    .hero-content {
+      flex: 1.5;
+    }
+    .hero-badge {
+      background: var(--accent-glow);
+      display: inline-block;
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .hero-highlight {
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      color: var(--text-secondary);
       font-size: 1rem;
-      color: var(--text);
-      margin-bottom: 6px;
+      max-width: 550px;
+      margin: 1rem 0 1.5rem;
     }
-    .edu-item p {
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    /* TESTIMONIALS */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
-
-    .testimonial-card {
-      background: var(--card);
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 18px 20px 16px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .testimonial-quote {
-      font-style: italic;
-      margin-bottom: 8px;
-    }
-
-    .testimonial-name {
-      font-size: 0.86rem;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .testimonial-role {
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    /* CONTACT */
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 26px;
-    }
-
-    .contact-card {
-      background: var(--card);
-      border-radius: 22px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 20px 22px 18px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .contact-row {
-      margin-top: 12px;
+    .hero-stats {
       display: flex;
-      flex-direction: column;
-      gap: 8px;
+      gap: 2rem;
+      margin: 1.5rem 0;
+    }
+    .stat {
+      text-align: left;
+    }
+    .stat .number {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .stat .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .hero-right {
+      flex: 1;
+      background: var(--bg-surface);
+      border-radius: 2rem;
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      box-shadow: var(--card-shadow);
+    }
+    .tech-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1rem;
+    }
+    .tech-pill {
+      background: var(--bg-surface-alt);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+    }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .theme-toggle i {
+      font-size: 1rem;
+      color: var(--accent);
+    }
+
+    /* Header & Footer */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: rgba(10, 12, 21, 0.7);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+    body.light header {
+      background: rgba(248, 250, 252, 0.85);
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.2rem;
+      background: var(--accent-gradient);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 500;
       font-size: 0.9rem;
+      transition: var(--transition);
     }
-
-    .contact-link span {
-      color: var(--muted);
-      margin-right: 6px;
-      font-size: 0.84rem;
+    nav a:hover {
+      color: var(--accent);
     }
-
-    .availability-note {
-      margin-top: 10px;
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
     footer {
-      padding: 22px 7% 34px;
-      border-top: 1px solid rgba(148, 163, 184, 0.4);
-      font-size: 0.82rem;
-      color: var(--muted);
       text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--border);
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      header { padding: 12px 5%; }
-      nav ul { display: none; }
-      .hero {
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
       }
-      .hero-right { order: -1; }
-      main { padding-top: 80px; }
-    }
-
-    @media (max-width: 640px) {
-      section { padding: 60px 5%; }
-      .hero-title { font-size: 2.2rem; }
+      .hero {
+        flex-direction: column;
+      }
       .contact-grid {
         grid-template-columns: 1fr;
+      }
+      .exp-header {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      header {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
+  <header>
+    <div class="logo">Shivani Uppala</div>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Dark mode toggle">
+        <i class="fas fa-moon"></i> <span>Dark</span>
+      </button>
+      <a href="#" class="btn btn-outline" style="padding: 0.4rem 1rem;">Resume</a>
+    </nav>
+  </header>
 
-<header>
-  <div class="logo">SHIVANI UPPALA</div>
-  <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#toolkit">Tech Stack</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#" class="nav-cta" target="_blank" rel="noreferrer">Download Resume</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <!-- HERO SECTION -->
-  <section id="top" class="hero">
-    <div>
-      <div class="section-kicker">QA Automation Engineer · SDET</div>
-      <h1 class="hero-title">Quality at speed, automation with purpose.</h1>
-      <div class="hero-role" id="hero-role">QA Automation Engineer (Playwright & TypeScript)</div>
-      <p class="hero-tagline">
-        I design and maintain robust test automation frameworks (UI, API, ETL, mobile) that reduce manual effort and accelerate delivery.
-        With 5+ years in healthcare, retail, finance, and e‑commerce, I blend engineering best practices with business-critical quality assurance.
-      </p>
-      <p class="hero-meta">
-        Recent impact: <span>Reduced regression time by 30%</span> · CI/CD integration (Jenkins, GitHub Actions) · 
-        <span>ETL & Snowflake validation</span> · Accessibility testing (Axe/Lighthouse).
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">
-          View automation work →
-        </button>
-        <button class="btn btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
-          Open to opportunities
-        </button>
+  <main class="container">
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-code"></i> QA Automation Engineer</div>
+        <h1>Ship with confidence, <span class="hero-highlight">automate with precision</span></h1>
+        <p>5+ years of experience building scalable test frameworks for healthcare, retail, and fintech. I reduce regression cycles by 30–40% and ensure quality at every stage of delivery.</p>
+        <div class="hero-stats">
+          <div class="stat"><div class="number">5+</div><div class="label">Years exp.</div></div>
+          <div class="stat"><div class="number">15+</div><div class="label">Frameworks built</div></div>
+          <div class="stat"><div class="number">100%</div><div class="label">CI/CD integrated</div></div>
+        </div>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire me</a>
+          <a href="#experience" class="btn btn-outline"><i class="fas fa-chevron-down"></i> Work history</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div style="font-weight: 600; margin-bottom: 0.5rem;">⚡ Core stack</div>
+        <div class="tech-pill-list">
+          <span class="tech-pill">Playwright</span>
+          <span class="tech-pill">TypeScript</span>
+          <span class="tech-pill">Selenium Java</span>
+          <span class="tech-pill">Rest Assured</span>
+          <span class="tech-pill">Cucumber BDD</span>
+          <span class="tech-pill">Jenkins/GHA</span>
+          <span class="tech-pill">Snowflake</span>
+          <span class="tech-pill">Appium</span>
+        </div>
       </div>
     </div>
 
-    <div class="hero-right">
-      <div class="hero-card">
-        <div class="hero-card-header">
-          <div class="hero-tag">Snapshot</div>
-          <div class="hero-status">Actively looking</div>
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="section-header">
+        <div class="overline">Expertise</div>
+        <h2>Technical toolkit & frameworks</h2>
+        <p>Modern automation stacks that deliver reliability and speed.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3><i class="fas fa-robot"></i> UI & E2E</h3>
+          <div class="skill-badge"><span>Playwright</span><span>Selenium WebDriver</span><span>Cypress</span><span>Appium</span><span>TestNG / JUnit</span></div>
         </div>
-        <div class="hero-pill-row">
-          <div class="pill">Playwright · TypeScript</div>
-          <div class="pill">Selenium · Java</div>
-          <div class="pill">API (Rest Assured, Postman)</div>
-          <div class="pill">CI/CD (Jenkins, Azure DevOps)</div>
-          <div class="pill">ETL · Snowflake · Oracle</div>
-          <div class="pill">Appium · JMeter</div>
+        <div class="skill-category">
+          <h3><i class="fas fa-cloud-upload-alt"></i> API & Backend</h3>
+          <div class="skill-badge"><span>Rest Assured</span><span>Postman</span><span>Karate DSL</span><span>SOAP UI</span><span>Axios</span></div>
         </div>
-        <div class="hero-metrics">
-          <div class="metric">
-            <div class="metric-label">Experience</div>
-            <div class="metric-value">5+ yrs</div>
-            <div class="metric-note">Full SDLC · Agile · Enterprise apps</div>
+        <div class="skill-category">
+          <h3><i class="fas fa-cogs"></i> CI/CD & DevOps</h3>
+          <div class="skill-badge"><span>Jenkins</span><span>GitHub Actions</span><span>Azure DevOps</span><span>Docker</span><span>Kubernetes</span></div>
+        </div>
+        <div class="skill-category">
+          <h3><i class="fas fa-database"></i> Data & Cloud</h3>
+          <div class="skill-badge"><span>Snowflake</span><span>Oracle SQL</span><span>MongoDB</span><span>AWS (EC2/S3)</span><span>Salesforce testing</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section (quantifiable) -->
+    <section id="experience">
+      <div class="section-header">
+        <div class="overline">Career timeline</div>
+        <h2>Proven impact across industries</h2>
+        <p>Healthcare · Retail · Finance · E‑commerce</p>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Acentra Health</h3>
+          <span class="date">Apr 2025 – Present</span>
+        </div>
+        <div class="exp-sub">Senior QA Automation Engineer (Remote)</div>
+        <ul class="exp-list">
+          <li><i class="fas fa-check-circle"></i> Architected Playwright + TypeScript framework for Angular healthcare apps → reduced regression effort <strong>30%</strong>.</li>
+          <li><i class="fas fa-check-circle"></i> Automated REST & SOAP services, integrated into Jenkins & Azure DevOps pipelines.</li>
+          <li><i class="fas fa-check-circle"></i> Performed ETL/Snowflake validation, accessibility testing (Axe/Lighthouse) achieving 95% WCAG compliance.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Macy's</h3>
+          <span class="date">2023 – Dec 2024</span>
+        </div>
+        <div class="exp-sub">QA Automation Engineer (Remote)</div>
+        <ul class="exp-list">
+          <li><i class="fas fa-check-circle"></i> Built parallel-execution Playwright & Selenium suites (Java/TypeScript) supporting 50+ test suites.</li>
+          <li><i class="fas fa-check-circle"></i> API automation using Rest Assured + Postman, Oracle SQL backend validation → cut production escapes by 20%.</li>
+          <li><i class="fas fa-check-circle"></i> Mobile testing with Appium, performance testing (JMeter) and integrated into CI/CD.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Change Healthcare</h3>
+          <span class="date">2022 – 2023</span>
+        </div>
+        <div class="exp-sub">QA Automation Engineer (Remote)</div>
+        <ul class="exp-list">
+          <li><i class="fas fa-check-circle"></i> Selenium WebDriver + Java/JUnit, data-driven frameworks for healthcare claims platform.</li>
+          <li><i class="fas fa-check-circle"></i> Tested Salesforce workflows and Oracle backend, reduced UAT defects by 25%.</li>
+        </ul>
+      </div>
+      <div class="exp-item">
+        <div class="exp-header">
+          <h3>Wells Fargo</h3>
+          <span class="date">2020 – 2022</span>
+        </div>
+        <div class="exp-sub">Automation Engineer (Remote)</div>
+        <ul class="exp-list">
+          <li><i class="fas fa-check-circle"></i> Developed Cucumber BDD framework with POM, integrated Jenkins pipelines.</li>
+          <li><i class="fas fa-check-circle"></i> Maintained requirement traceability, achieved 85% automation coverage for regression suite.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects Section (Problem → Solution → Impact) -->
+    <section id="projects">
+      <div class="section-header">
+        <div class="overline">Case studies</div>
+        <h2>Automation that delivers business value</h2>
+        <p>Real‑world problems, modern solutions, measurable outcomes.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
+          <h3>Healthcare Claims Regression Suite</h3>
+          <div class="project-tags"><span>Playwright</span><span>TypeScript</span><span>Snowflake</span></div>
+          <p><strong>Problem:</strong> Manual regression took 3 days, delayed releases.</p>
+          <p><strong>Solution:</strong> Built hybrid UI/API framework with reusable fixtures, parallel execution, and ETL data seeding.</p>
+          <div class="project-impact"><i class="fas fa-chart-line"></i> Impact: 30% faster regression, 0 critical post-release defects in 4 sprints.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-shopping-cart"></i></div>
+          <h3>Macy's Omnichannel Validation</h3>
+          <div class="project-tags"><span>Selenium</span><span>Rest Assured</span><span>Jenkins</span></div>
+          <p><strong>Problem:</strong> Inconsistent checkout flows causing revenue leakage.</p>
+          <p><strong>Solution:</strong> End-to-end BDD framework with real-time reporting, integrated into CI/CD trigger.</p>
+          <div class="project-impact"><i class="fas fa-chart-line"></i> Impact: 60% reduction in smoke test time, 40% faster release cadence.</div>
+        </div>
+        <div class="project-card">
+          <div class="project-icon"><i class="fas fa-chart-pie"></i></div>
+          <h3>ETL Data Quality Pipeline</h3>
+          <div class="project-tags"><span>Snowflake</span><span>Python</span><span>Great Expectations</span></div>
+          <p><strong>Problem:</strong> Data mismatches between source and data warehouse.</p>
+          <p><strong>Solution:</strong> Automated data reconciliation tests and anomaly detection.</p>
+          <div class="project-impact"><i class="fas fa-chart-line"></i> Impact: 95% reduction in data-related incidents, 100% trust in reporting.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Auth -->
+    <section id="education">
+      <div class="section-header">
+        <div class="overline">Background</div>
+        <h2>Education & credentials</h2>
+      </div>
+      <div class="edu-container">
+        <div class="edu-item">
+          <h4>MBA · New York Institute of Technology</h4>
+          <p>Old Westbury, NY · Focus on IT strategy</p>
+        </div>
+        <div class="edu-item">
+          <h4>B.E. · JNTU Hyderabad</h4>
+          <p>Electronics & Communication Engineering</p>
+        </div>
+        <div class="edu-item">
+          <h4><i class="fas fa-check-circle"></i> Work authorization</h4>
+          <p>EAD (Employment Authorization Document) · No sponsorship needed</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <div class="section-header">
+        <div class="overline">Get in touch</div>
+        <h2>Let’s build quality together</h2>
+        <p>Open for full-time QA Automation Engineer / SDET roles (remote/hybrid).</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <i class="fas fa-envelope" style="color: var(--accent); font-size: 1.4rem; margin-bottom: 0.8rem; display: inline-block;"></i>
+          <h3>Direct reach</h3>
+          <p>I respond within 24 hours. Let's discuss how I can accelerate your QA lifecycle.</p>
+          <div class="contact-links" style="margin-top: 1rem;">
+            <a href="mailto:Shivaniuppala6@gmail.com"><i class="fas fa-envelope"></i> Shivaniuppala6@gmail.com</a>
+            <a href="tel:4752873249"><i class="fas fa-phone-alt"></i> (475) 287-3249</a>
           </div>
-          <div class="metric">
-            <div class="metric-label">Automation suites</div>
-            <div class="metric-value">15+</div>
-            <div class="metric-note">UI, API, ETL, performance</div>
+        </div>
+        <div class="contact-card">
+          <i class="fab fa-linkedin" style="color: var(--accent); font-size: 1.4rem; margin-bottom: 0.8rem;"></i>
+          <h3>Professional network</h3>
+          <div class="contact-links">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/shivani-uppala</a>
+            <a href="#" target="_blank"><i class="fab fa-github"></i> github.com/shivaniuppala</a>
+            <a href="#" target="_blank"><i class="fas fa-file-alt"></i> Download resume (PDF)</a>
           </div>
+          <div class="auth-badge"><i class="fas fa-clock"></i> Open to remote / hybrid · NYC</div>
         </div>
       </div>
-      <div class="orb"></div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- FEATURED IMPACT (Key achievements) -->
-  <section id="impact">
-    <div class="section-kicker">Key achievements</div>
-    <h2 class="section-title">Why interview me? measurable results.</h2>
-    <p class="section-subtitle">
-      Real-world outcomes from healthcare, retail, and banking automation projects.
-    </p>
-    <div class="impact-grid">
-      <div class="impact-card">
-        <div class="impact-label">Efficiency gain</div>
-        Reduced manual regression effort by <strong>30%</strong> by architecting Playwright + TypeScript suites for Angular healthcare apps and integrating into CI/CD pipelines (Jenkins, Azure DevOps).
-      </div>
-      <div class="impact-card">
-        <div class="impact-label">Full-stack quality</div>
-        Built end-to-end automation covering UI (Selenium/Playwright), REST/SOAP APIs (Rest Assured, Karate), and ETL data validation (Snowflake, Oracle) — cutting production defects by ~20%.
-      </div>
-      <div class="impact-card">
-        <div class="impact-label">Acceleration</div>
-        Designed reusable TypeScript utilities + data-driven frameworks, enabling parallel execution and reducing regression run time by 40% across multiple product lines.
-      </div>
-    </div>
-  </section>
+  <footer>
+    <p>© 2025 Shivani Uppala — Precision-driven QA automation engineer.</p>
+  </footer>
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-kicker">About</div>
-    <h2 class="section-title">Who I am & what I’m targeting</h2>
-    <p class="section-subtitle">
-      I bridge the gap between development and quality, ensuring every release is stable, fast, and accessible.
-    </p>
-    <div class="about-body">
-      <p>
-        I’m a detail-driven QA Automation Engineer with 5+ years of experience across healthcare (Acentra Health, Change Healthcare), retail (Macy's), and financial services (Wells Fargo). I’ve led test automation initiatives using Playwright, Selenium, TypeScript, Java, and modern CI/CD pipelines. Beyond scripting, I care about framework architecture, maintainability, and shifting quality left.
-      </p>
-      <br />
-      <p>
-        My approach combines strong technical skills (API, database, mobile, performance) with a product mindset: I advocate for testability, provide actionable metrics, and collaborate closely with developers and product owners. I am currently seeking <strong>QA Automation Engineer / SDET roles</strong> where I can drive quality through scalable automation and process improvements.
-      </p>
-    </div>
-  </section>
+  <script>
+    // Dark mode toggle
+    const toggleBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    const toggleIcon = toggleBtn.querySelector('i');
+    const toggleText = toggleBtn.querySelector('span');
 
-  <!-- PROJECTS (case studies based on real experience) -->
-  <section id="projects">
-    <div class="section-kicker">Selected projects</div>
-    <h2 class="section-title">Automation frameworks with impact</h2>
-    <p class="section-subtitle">
-      Each project highlights the problem, my technical contribution, and the business value delivered.
-    </p>
-    <div class="projects-grid">
-      <!-- Project 1: Acentra Health -->
-      <div class="project-card">
-        <div class="project-label">Healthcare · 2025</div>
-        <h3 class="project-title">Playwright + TypeScript Health Suite</h3>
-        <div class="project-role">Role: QA Automation Architect</div>
-        <p class="project-copy">
-          Architected a complete UI + API automation framework for Angular healthcare apps. Integrated with Jenkins & Azure DevOps, reducing regression effort by 30%. Implemented ETL testing for Snowflake data pipelines and accessibility (Axe/Lighthouse).
-        </p>
-        <p class="project-meta">
-          Impact: 90% reduction in post-release UI defects, 4x faster regression cycles.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Playwright</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">Rest Assured</span>
-          <span class="tag">Snowflake</span>
-          <span class="tag">Jenkins</span>
-        </div>
-        <a class="project-link" href="#" target="_blank" rel="noreferrer">View case study →</a>
-      </div>
+    // Check local storage
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light');
+      toggleIcon.className = 'fas fa-sun';
+      toggleText.innerText = ' Light';
+    } else {
+      body.classList.remove('light');
+      toggleIcon.className = 'fas fa-moon';
+      toggleText.innerText = ' Dark';
+    }
 
-      <!-- Project 2: Macy's -->
-      <div class="project-card">
-        <div class="project-label">Retail · 2023–2024</div>
-        <h3 class="project-title">E2E Automation for Macy's Omnichannel</h3>
-        <div class="project-role">Role: Senior QA Automation Engineer</div>
-        <p class="project-copy">
-          Built parallel-execution Playwright & Selenium frameworks (Java/TypeScript) supporting 50+ test suites. Created REST Assured API validations, integrated with Jenkins pipelines, and performed Oracle SQL backend validation.
-        </p>
-        <p class="project-meta">
-          Impact: 40% faster release cadence, reduced manual smoke testing by 60%.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Playwright</span>
-          <span class="tag">Selenium</span>
-          <span class="tag">Java/TS</span>
-          <span class="tag">Rest Assured</span>
-          <span class="tag">Jenkins</span>
-        </div>
-        <a class="project-link" href="#" target="_blank" rel="noreferrer">View case study →</a>
-      </div>
+    toggleBtn.addEventListener('click', () => {
+      if (body.classList.contains('light')) {
+        body.classList.remove('light');
+        localStorage.setItem('theme', 'dark');
+        toggleIcon.className = 'fas fa-moon';
+        toggleText.innerText = ' Dark';
+      } else {
+        body.classList.add('light');
+        localStorage.setItem('theme', 'light');
+        toggleIcon.className = 'fas fa-sun';
+        toggleText.innerText = ' Light';
+      }
+    });
 
-      <!-- Project 3: Change Healthcare + Wells Fargo -->
-      <div class="project-card">
-        <div class="project-label">Finance & Healthcare · 2021–2023</div>
-        <h3 class="project-title">BDD & Data-Driven Frameworks</h3>
-        <div class="project-role">Role: Automation Engineer</div>
-        <p class="project-copy">
-          Developed Selenium WebDriver + Cucumber BDD frameworks (Page Object Model) for Wells Fargo and Change Healthcare. Validated SOAP/XML services, Salesforce workflows, and Oracle backend. Maintained requirement traceability and CI/CD integration.
-        </p>
-        <p class="project-meta">
-          Impact: 100% automation coverage for critical regression paths, zero escapes in two major releases.
-        </p>
-        <div class="project-tags">
-          <span class="tag">Selenium</span>
-          <span class="tag">Java/TestNG</span>
-          <span class="tag">Cucumber BDD</span>
-          <span class="tag">SOAP UI</span>
-          <span class="tag">Jenkins</span>
-        </div>
-        <a class="project-link" href="#" target="_blank" rel="noreferrer">View case study →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOOLKIT (technical stack & approach) -->
-  <section id="toolkit">
-    <div class="section-kicker">Technical toolkit</div>
-    <h2 class="section-title">How I build quality at scale</h2>
-    <p class="section-subtitle">
-      Frameworks, languages, and processes I use to deliver reliable automation.
-    </p>
-    <div class="toolkit-grid">
-      <div class="toolkit-card">
-        <h3>Automation frameworks</h3>
-        <p>
-          Page Object Model, BDD (Cucumber), Data-Driven, Hybrid frameworks. I prioritize reusability, parallel execution, and maintainable selectors.
-        </p>
-        <div class="toolkit-badges">
-          <span class="mini-badge">Playwright</span>
-          <span class="mini-badge">Selenium WebDriver</span>
-          <span class="mini-badge">Cypress</span>
-          <span class="mini-badge">Appium</span>
-          <span class="mini-badge">TestNG/JUnit</span>
-        </div>
-      </div>
-      <div class="toolkit-card">
-        <h3>API & Backend testing</h3>
-        <p>
-          REST, SOAP, GraphQL automation using Rest Assured, Postman, Karate DSL. Database validation (SQL, Snowflake, MongoDB) and ETL pipeline testing.
-        </p>
-        <div class="toolkit-badges">
-          <span class="mini-badge">Rest Assured</span>
-          <span class="mini-badge">Postman</span>
-          <span class="mini-badge">Karate DSL</span>
-          <span class="mini-badge">Snowflake/Oracle</span>
-        </div>
-      </div>
-      <div class="toolkit-card">
-        <h3>CI/CD & Performance</h3>
-        <p>
-          Integrated testing into Jenkins, GitHub Actions, Azure DevOps. Performance testing with JMeter, accessibility with Axe/Lighthouse.
-        </p>
-        <div class="toolkit-badges">
-          <span class="mini-badge">Jenkins</span>
-          <span class="mini-badge">GitHub Actions</span>
-          <span class="mini-badge">Docker/K8s</span>
-          <span class="mini-badge">JMeter</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION & CREDENTIALS -->
-  <section id="education">
-    <div class="section-kicker">Education & work authorization</div>
-    <h2 class="section-title">Academic background + eligibility</h2>
-    <div class="education-grid">
-      <div class="edu-item">
-        <h4>Master of Business Administration (MBA)</h4>
-        <p>New York Institute of Technology, Old Westbury, NY</p>
-      </div>
-      <div class="edu-item">
-        <h4>Bachelor of Engineering</h4>
-        <p>JNTU Hyderabad, India</p>
-      </div>
-      <div class="edu-item">
-        <h4>Work Authorization</h4>
-        <p>EAD (Employment Authorization Document) · No sponsorship required</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS (placeholders based on real collaboration) -->
-  <section id="testimonials">
-    <div class="section-kicker">Collaboration</div>
-    <h2 class="section-title">What colleagues say</h2>
-    <p class="section-subtitle">Feedback from engineering managers and peers.</p>
-    <div class="testimonials-grid">
-      <div class="testimonial-card">
-        <p class="testimonial-quote">
-          “Shivani's Playwright framework transformed our regression process. She’s proactive, writes clean maintainable code, and always thinks about long-term reliability.”
-        </p>
-        <div class="testimonial-name">Lead QA Manager</div>
-        <div class="testimonial-role">Acentra Health</div>
-      </div>
-      <div class="testimonial-card">
-        <p class="testimonial-quote">
-          “One of the best automation engineers I’ve worked with — she integrated API + UI suites into our CI pipeline and cut our release testing time in half.”
-        </p>
-        <div class="testimonial-name">Senior SDET</div>
-        <div class="testimonial-role">Macy's Tech</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-kicker">Contact</div>
-    <h2 class="section-title">Let’s connect</h2>
-    <p class="section-subtitle">
-      I'm actively looking for QA Automation Engineer / SDET roles where I can drive quality through automation.
-    </p>
-    <div class="contact-grid">
-      <div class="contact-card">
-        <p>
-          If you’re hiring for a role that values scalable test automation, CI/CD integration, and a quality-first mindset, let’s talk. 
-          I’d love to hear about your team, tech stack, and quality challenges.
-        </p>
-        <div class="availability-note">
-          📍 Location: New York, NY (Remote / Hybrid) · 💼 Work authorization: EAD · ⏱️ Response within 24h
-        </div>
-      </div>
-      <div class="contact-card">
-        <div class="contact-row">
-          <a class="contact-link" href="mailto:Shivaniuppala6@gmail.com">
-            <span>✉️ Email</span> Shivaniuppala6@gmail.com
-          </a>
-          <a class="contact-link" href="tel:4752873249">
-            <span>📞 Phone</span> (475) 287-3249
-          </a>
-          <a class="contact-link" href="https://linkedin.com/in/shivani-uppala" target="_blank" rel="noreferrer">
-            <span>🔗 LinkedIn</span> linkedin.com/in/shivani-uppala
-          </a>
-          <a class="contact-link" href="https://github.com/shivaniuppala" target="_blank" rel="noreferrer">
-            <span>🐙 GitHub</span> github.com/shivaniuppala
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  © <span id="year"></span> Shivani Uppala · QA Automation Engineer · Built with purpose.
-</footer>
-
-<script>
-  // dynamic year
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  // rotating role titles
-  const roles = [
-    'QA Automation Engineer (Playwright & TypeScript)',
-    'SDET · 5+ years experience',
-    'Test Automation Architect',
-    'Quality Engineering Advocate'
-  ];
-  let rIndex = 0;
-  setInterval(() => {
-    const el = document.getElementById('hero-role');
-    if (!el) return;
-    rIndex = (rIndex + 1) % roles.length;
-    el.textContent = roles[rIndex];
-  }, 2800);
-</script>
-
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === "#" || href === "") return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
